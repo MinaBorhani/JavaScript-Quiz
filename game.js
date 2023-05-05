@@ -1,6 +1,6 @@
 // console.log("hiii");
 const question = document.getElementById("question");
-const choice =Array.from(document.getElementsByName("choice-text"));
+const choice =Array.from(document.getElementsByClassName("choice-text"));
 // console.log(choice);
 
 let currentQuestion = {};
@@ -38,6 +38,9 @@ let questions = [
     }
 ]
 
+const CORRECT_BONUS = 10;
+const MAX_QUESTIONS = 3;
+
 
 straGame = () =>{
     questionCounter = 0;
@@ -55,6 +58,13 @@ getNewQuestion = () =>{
     let indexQuestion = Math.floor(Math.random() * availableQuestion.length);
     currentQuestion = availableQuestion[indexQuestion];
     question.innerText = currentQuestion.question;
+
+    choice.forEach(choices => {
+        const number = choices.dataset["number"];
+        // console.log(number);
+        // console.log(choices);
+        choices.innerText = currentQuestion["choice" + number]
+    })
 };
 
 straGame();
