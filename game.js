@@ -37,3 +37,24 @@ let questions = [
         answer:4
     }
 ]
+
+
+straGame = () =>{
+    questionCounter = 0;
+    score= 0;
+    availableQuestion = [...questions];
+    console.log(availableQuestion);
+
+    getNewQuestion();
+};
+
+// straGame();
+
+getNewQuestion = () =>{
+    questionCounter++;
+    let indexQuestion = Math.floor(Math.random() * availableQuestion.length);
+    currentQuestion = availableQuestion[indexQuestion];
+    question.innerText = currentQuestion.question;
+};
+
+straGame();
