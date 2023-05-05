@@ -83,8 +83,17 @@ choice.forEach(choices =>{
         acceptingAnswers = false;
         const selectChoice = e.target;
         const selectAnswer = selectChoice.dataset["number"];
-        console.log(selectAnswer);
-        getNewQuestion()
+        // console.log(selectAnswer  == currentQuestion.answer);
+
+        const classToAplly = selectAnswer == currentQuestion.answer ? "correct" : "Incorrect";
+        // console.log(classToAplly);
+
+        selectChoice.parentElement.classList.add(classToAplly)
+        setTimeout(()=>{
+            selectChoice.parentElement.classList.remove(classToAplly);
+            getNewQuestion();
+        }, 1000);
+        
     })
 })
 
