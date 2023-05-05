@@ -4,7 +4,7 @@ const choice =Array.from(document.getElementsByClassName("choice-text"));
 // console.log(choice);
 
 let currentQuestion = {};
-let acceptingAnswers = true;
+let acceptingAnswers = false;
 let score = 0; 
 let questionCounter = 0;
 let availableQuestion = [];
@@ -54,6 +54,11 @@ straGame = () =>{
 // straGame();
 
 getNewQuestion = () =>{
+
+    if(availableQuestion.length === 0 || questionCounter >= MAX_QUESTIONS){
+        //go to the end home
+        return window.location.assign("./end.html");
+    }
     questionCounter++;
     let indexQuestion = Math.floor(Math.random() * availableQuestion.length);
     currentQuestion = availableQuestion[indexQuestion];
@@ -65,6 +70,22 @@ getNewQuestion = () =>{
         // console.log(choices);
         choices.innerText = currentQuestion["choice" + number]
     })
+
+    availableQuestion.splice(indexQuestion, 1);
+    acceptingAnswers = true
 };
+
+choice.forEach(choices =>{
+    choices.addEventListener("click" , e =>{
+        // console.log(e.target);
+        if(!acceptingAnswers) return;
+
+        acceptingAnswers = false;
+        const selectChoice = e.target;
+        const selectAnswer = selectChoice.dataset["number"];
+        console.log(selectAnswer);
+        getNewQuestion()
+    })
+})
 
 straGame();
