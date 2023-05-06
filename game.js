@@ -2,6 +2,8 @@
 const question = document.getElementById("question");
 const choice =Array.from(document.getElementsByClassName("choice-text"));
 // console.log(choice);
+const questionCounterText =document.getElementById("questionCounter");
+const scoretext = document.getElementById("score");
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -60,6 +62,7 @@ getNewQuestion = () =>{
         return window.location.assign("./end.html");
     }
     questionCounter++;
+    questionCounterText.innerText = `${questionCounter}/${MAX_QUESTIONS}`
     let indexQuestion = Math.floor(Math.random() * availableQuestion.length);
     currentQuestion = availableQuestion[indexQuestion];
     question.innerText = currentQuestion.question;
@@ -88,6 +91,10 @@ choice.forEach(choices =>{
         const classToAplly = selectAnswer == currentQuestion.answer ? "correct" : "Incorrect";
         // console.log(classToAplly);
 
+        if(classToAplly == "correct"){
+            incrementScore(CORRECT_BONUS)
+        }
+
         selectChoice.parentElement.classList.add(classToAplly)
         setTimeout(()=>{
             selectChoice.parentElement.classList.remove(classToAplly);
@@ -96,5 +103,10 @@ choice.forEach(choices =>{
         
     })
 })
+
+incrementScore = num =>{
+    score += num;
+    scoretext.innerText = score;
+}
 
 straGame();
