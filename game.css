@@ -32,3 +32,19 @@
 .Incorrect{
     background-color: #dc3545;
 }
+
+/* Head's up display */
+#hud {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #28a745; */
+}
+
+.hud-prifix{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.hud-main-text{
+    text-align: center;
+}
