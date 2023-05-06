@@ -60,6 +60,7 @@ straGame = () =>{
 getNewQuestion = () =>{
 
     if(availableQuestion.length === 0 || questionCounter >= MAX_QUESTIONS){
+        localStorage.setItem("mostRecntScore" , score);
         //go to the end home
         return window.location.assign("./end.html");
     }
