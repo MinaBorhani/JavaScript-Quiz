@@ -48,3 +48,16 @@
 .hud-main-text{
     text-align: center;
 }
+
+#prograssBar{
+    width: 20rem;
+    height: 4rem;
+    border: 0.3rem solid #56a5eb;
+    margin: 1.5rem;
+}
+
+#prograssBarFull{
+    height: 3.4rem;
+    background-color: #56a5eb;
+    width: 0%;
+}
