@@ -17,13 +17,29 @@ let availableQuestion = [];
 
 let questions = [];
 
-fetch("question.json").then(res =>{
+// fetch("question.json")
+fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple")
+.then(res =>{
     // console.log(res.json());
     return res.json()
 })
 .then(loadQuestion =>{
-    console.log(loadQuestion);
-    questions = loadQuestion;
+    // console.log(loadQuestion.results);
+
+    questions = loadQuestion.results.map(loadQuestion =>{
+        const formatQuestion = {
+            question : loadQuestion.question
+        };
+        const answerChoice = [ ...loadQuestion.incorrect_answers];
+        formatQuestion.answer = Math.floor(Math.random() * 3) + 1;
+        answerChoice.splice(formatQuestion.answer -1 , 0, loadQuestion.incorrect_answers);
+
+        answerChoice.forEach((choice , index) => {
+            formatQuestion["choice" + (index+1)] = choice;
+        })
+        return formatQuestion;
+    })
+    // questions = loadQuestion;
     straGame();
 }).catch( err =>{
     console.error(err);
