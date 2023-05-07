@@ -5,6 +5,8 @@ const choice =Array.from(document.getElementsByClassName("choice-text"));
 const prograssBarText =document.getElementById("progressText");
 const scoretext = document.getElementById("score");
 const prograssBarFull = document.getElementById("prograssBarFull");
+const loader = document.getElementById("loder");
+const game = document.getElementById("game");
 
 
 let currentQuestion = {};
@@ -18,6 +20,7 @@ let availableQuestion = [];
 let questions = [];
 
 // fetch("question.json")
+// fetch API
 fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple")
 .then(res =>{
     // console.log(res.json());
@@ -40,6 +43,9 @@ fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=mul
         return formatQuestion;
     })
     // questions = loadQuestion;
+    game.classList.remove("hidden");
+    loader.classList.add("hidden");
+    
     straGame();
 }).catch( err =>{
     console.error(err);
